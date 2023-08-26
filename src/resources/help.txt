@@ -1,0 +1,9 @@
+This is a GUI Editor for .ini type files.
+
+This program features are:
+    - Can edit multiple files at once.
+    - Can have comments per key/value pair.
+    - Can edit/add/delete Sections.
+    - Can edit/add/delete key/value pairs.
+
+To remove a section right click section title bar to get menu.
