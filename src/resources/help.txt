@@ -7,3 +7,49 @@ This program features are:
     - Can edit/add/delete key/value pairs.
 
 To remove a section right click section title bar to get menu.
+
+An Ini file contains any number of sections and each section contains
+key/value pairs.
+
+A section name can be any printable character except the [ and ] 
+characters and any length.
+
+A Key can be any printable except the = and # characters with any length.
+
+A Value can be any printable character except the # sign with any length.
+
+The Section and Key parts are case sensitive.
+
+A comment start with a # sign and goes to the end of line.  Comments can
+follow section names and Values.  With Values any whitespace between Value
+and the # sign are removed.
+
+The comments are not saved and may disappear from the Ini file as the
+Ini file is saved.
+
+The only way to keep comments for Key/Value pairs is to store them in
+a comment section.
+
+The IniTiger program allows you to enter a comment per key/value pair
+but the comment is kept in a section called 'SectionName'-Comments, 
+see example.
+
+An example of a section with 2 key/value pairs.
+
+[Section One]
+> Key one = Value one
+> Key two = Value two
+	
+[Section Two]
+> Key one = Value one
+> Key two = Value two
+> Key three = Value three
+
+[Section One-Comments]
+> Key one = The comment for key/value pair 'Key one' in section 'Section One'
+
+[Section Two-Comments]
+> Key two = The comment for key/value pair 'Key two' in section 'Section Two'
+> Key three = The comment for key/value pair 'Key three' in section 'Section Two'
+	
+The comment section is not a standard of an Ini file but my own idea.

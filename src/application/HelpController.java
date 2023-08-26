@@ -91,6 +91,9 @@ public class HelpController implements Initializable {
 				} else if (line.charAt(0) == '*') {
 					taHelp.appendText(spaces.substring(0, indent+2));
 					start = 2;
+				} else if (line.charAt(0) == '>') {
+					start = 2;
+					taHelp.appendText(spaces.substring(0, indent));
 				}
 				
 				taHelp.appendText(line.substring(start) + "\n");
