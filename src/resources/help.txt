@@ -34,7 +34,7 @@ The IniTiger program allows you to enter a comment per key/value pair
 but the comment is kept in a section called 'SectionName'-Comments, 
 see example.
 
-An example of a section with 2 key/value pairs.
+An example of an Ini file.
 
 [Section One]
 > Key one = Value one

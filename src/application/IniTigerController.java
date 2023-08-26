@@ -368,7 +368,7 @@ public class IniTigerController implements Initializable {
 			stage.showAndWait();
 			
 			if (ig.sectionNew != null) {
-				addSection(fi);
+				addSec(fi);
 			}
 		});
 		
@@ -543,8 +543,21 @@ public class IniTigerController implements Initializable {
 						
 						delete.setOnAction((e) -> {
 							String kv = (String)delete.getUserData();
-							System.out.println(kv);
 							String [] a = kv.split("~");
+							
+							ButtonType bt = ig.yesNoAlert("Delete key/value pair",
+									"Are you sure you want to delete key '" + a[1] + "'?", AlertType.CONFIRMATION);
+							
+							if (bt.getButtonData() == ButtonData.CANCEL_CLOSE)
+								return;
+							
+							fi.getIni().removeValuePair(a[1], a[2]);
+							
+							HBox hb3 = (HBox)delete.getParent();
+							VBox vb3 = (VBox)hb3.getParent();
+							
+							vb3.getChildren().remove(hb3);
+							
 							lblStatus.setText(a[0] + " " + a[1] + " " + a[2] + " Deleted.");
 						});
 						
@@ -616,7 +629,7 @@ public class IniTigerController implements Initializable {
 				stage.showAndWait();
 				
 				if (ig.sectionNew != null) {
-					addSection(fi);
+					addSec(fi);
 					
 					lblStatus.setText(ig.sectionNew.replaceAll(sep, "->") + " section Added.");
 				}
@@ -630,7 +643,7 @@ public class IniTigerController implements Initializable {
 		return fi;
 	}
 	
-	private void addSection(FileInfo fi) {
+	private void addSec(FileInfo fi) {
 		String sep = "~";
 		
 		VBox vb = new VBox();
@@ -701,7 +714,7 @@ public class IniTigerController implements Initializable {
 			for (TitledPane p : panes) {
 				if (p.getText().equals(sec) == true) {
 					
-					p.setStyle("-fx-text-fill: blue; -fx-font-weight: bold;");
+					p.setStyle("-fx-text-fill: blue; -fx-font-weight: normal;");
 					
 					VBox vbox = (VBox)p.getContent();
 					
@@ -828,7 +841,20 @@ public class IniTigerController implements Initializable {
 					
 					delete.setOnAction((e) -> {
 						String kv = (String)delete.getUserData();
-						System.out.println(kv);
+						String [] a3 = kv.split("~");
+						
+						ButtonType bt = ig.yesNoAlert("Delete key/value pair",
+								"Are you sure you want to delete key '" + a3[1] + "'?", AlertType.CONFIRMATION);
+						
+						if (bt.getButtonData() == ButtonData.CANCEL_CLOSE)
+							return;
+						
+						fi.getIni().removeValuePair(a3[1], a3[2]);
+						
+						HBox hb3 = (HBox)delete.getParent();
+						VBox vb3 = (VBox)hb3.getParent();
+						
+						vb3.getChildren().remove(hb3);
 					});
 					
 					hb.getChildren().addAll(lbl, tf, undo, edit, delete);
