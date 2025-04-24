@@ -42,4 +42,9 @@ public class FileInfo {
 	public void setAcc(Accordion acc) {
 		this.acc = acc;
 	}
+
+	@Override
+	public String toString() {
+		return "FileInfo [fd=" + fd + ", ini=" + ini + ", acc=" + acc + "]";
+	}
 }

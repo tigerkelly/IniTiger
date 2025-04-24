@@ -188,6 +188,8 @@ public class IniTigerController implements Initializable {
     	
     	FileInfo fi = (FileInfo)tab.getUserData();
     	
+//    	System.out.println(fi);
+    	
     	fi.getIni().writeFile(true);
     	
     	ObservableList<TitledPane> panes = fi.getAcc().getPanes();
@@ -320,7 +322,7 @@ public class IniTigerController implements Initializable {
 	
 	private FileInfo createTab(File fd) {
 		FileInfo fi = new FileInfo(fd);
-		Tab tab = new Tab(fd.getAbsolutePath());
+		Tab tab = new Tab(fd.getName());
 		tab.setUserData(fi);
 		tab.setStyle("-fx-font-family: SanSerif; -fx-padding: 0 10 0 10; -fx-font-size: 18px;");
 		
@@ -434,9 +436,9 @@ public class IniTigerController implements Initializable {
 						Label lbl = new Label((String)k);
 						lbl.setPrefWidth(125.0);
 						lbl.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-font-family: SanSerif;");
-						tt = new Tooltip((String)k);
-						tt.setStyle("-fx-font-size: 16px; -fx-font-family: SanSerif;");
-						lbl.setTooltip(tt);
+//						tt = new Tooltip((String)k);
+//						tt.setStyle("-fx-font-size: 16px; -fx-font-family: SanSerif;");
+//						lbl.setTooltip(tt);
 						
 						TextField tf = new TextField(v);
 						tf.setEditable(false);
@@ -480,7 +482,7 @@ public class IniTigerController implements Initializable {
 						edit.setUserData(sec + sep + k + sep + v);
 						edit.setPrefWidth(40.0);
 						edit.setStyle("-fx-font-size: 16px; -fx-font-family: SanSerif;");
-						tt = new Tooltip("Edit Key part.");
+						tt = new Tooltip("Edit Key/Value part.");
 						tt.setStyle("-fx-font-size: 16px; -fx-font-family: SanSerif;");
 						edit.setTooltip(tt);
 						
@@ -537,7 +539,7 @@ public class IniTigerController implements Initializable {
 						delete.setUserData(sec + sep + k + sep + v);
 						delete.setPrefWidth(40.0);
 						delete.setStyle("-fx-font-size: 16px; -fx-font-family: SanSerif;");
-						tt = new Tooltip("Delete Key/value pair.");
+						tt = new Tooltip("Delete Key/Value pair.");
 						tt.setStyle("-fx-font-size: 16px; -fx-font-family: SanSerif;");
 						delete.setTooltip(tt);
 						
@@ -545,7 +547,7 @@ public class IniTigerController implements Initializable {
 							String kv = (String)delete.getUserData();
 							String [] a = kv.split("~");
 							
-							ButtonType bt = ig.yesNoAlert("Delete key/value pair",
+							ButtonType bt = ig.yesNoAlert("Delete Key/Value pair",
 									"Are you sure you want to delete key '" + a[1] + "'?", AlertType.CONFIRMATION);
 							
 							if (bt.getButtonData() == ButtonData.CANCEL_CLOSE)
@@ -600,7 +602,7 @@ public class IniTigerController implements Initializable {
 						addKeyValueBox(fi);
 						
 						String [] a = ig.secKeyValue.split("~");
-						lblStatus.setText(a[0] + "->" + a[1] + "->" + a[2] + " key/value Added.");
+						lblStatus.setText(a[0] + "->" + a[1] + "->" + a[2] + " Key/Value Added.");
 					}
 				});
 				
@@ -740,9 +742,8 @@ public class IniTigerController implements Initializable {
 						tt = new Tooltip(c);
 						tt.setStyle("-fx-font-size: 16px; -fx-font-family: SanSerif;");
 						tf.setTooltip(tt);
-					} else {
-						
 					}
+
 					tf.setStyle("-fx-font-size: 16px; -fx-font-family: SanSerif;");
 					
 					HBox.setHgrow(tf, Priority.ALWAYS);
@@ -769,7 +770,7 @@ public class IniTigerController implements Initializable {
 						t.setText(a2[2]);
 						
 						fi.getIni().addValuePair(a2[0], a2[1], a2[2]);
-						lblStatus.setText(a2[0] + " " + a2[1] + " " + a2[2] + " key/value Undone.");
+						lblStatus.setText(a2[0] + " " + a2[1] + " " + a2[2] + " Key/Value Undone.");
 					});
 					
 					Button edit = new Button();
@@ -826,7 +827,7 @@ public class IniTigerController implements Initializable {
 								}
 							}
 							
-							lblStatus.setText(a2[0] + " " + a2[1] + " " + a2[2] + " key/value Edited.");
+							lblStatus.setText(a2[0] + " " + a2[1] + " " + a2[2] + " Key/Value Edited.");
 						}
 					});
 					
@@ -843,7 +844,7 @@ public class IniTigerController implements Initializable {
 						String kv = (String)delete.getUserData();
 						String [] a3 = kv.split("~");
 						
-						ButtonType bt = ig.yesNoAlert("Delete key/value pair",
+						ButtonType bt = ig.yesNoAlert("Delete Key/Value pair",
 								"Are you sure you want to delete key '" + a3[1] + "'?", AlertType.CONFIRMATION);
 						
 						if (bt.getButtonData() == ButtonData.CANCEL_CLOSE)
